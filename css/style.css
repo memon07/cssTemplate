@@ -47,6 +47,7 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
+    text-align: center;
 }
 
 .heading-primary {
@@ -57,6 +58,7 @@ body {
     WE DONT KNOW WHY IT DOES */
     /* FIX */
     backface-visibility: hidden;
+    margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -80,9 +82,7 @@ body {
     font-weight: 700;
     letter-spacing: 17.5px;
 
-    animation-name: moveInRight;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
+    animation: moveInRight 1s ease-out;
 }
 
 @keyframes moveInLeft {
@@ -115,4 +115,74 @@ body {
         opacity: 1;
         transform: translate(0);
     }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/* psudo class are like state of an element (special condition)
+eg btn when in its hovered therefore btn:hover */
+
+.btn:link,
+.btn:visited {
+    display: inline-block; /* do when you want to apply some padding and borders*/
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px; /* top-bottom-left-right*/ 
+    border-radius: 100px;
+    position: relative;
+    /* Animation */
+    transition: all .2s;
+
+}
+
+.btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0  10px 20px rgba(0,0,0,.2); /* x apsilon  blur color */
+}
+
+.btn:active{
+    transform: translateY(-1px);
+    box-shadow: 0  5px 5px rgba(0,0,0,.2);
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777777;
+}
+
+.btn::after{ /* this button is behind the btn . its treated like the child of the btn */
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after{
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
 }
