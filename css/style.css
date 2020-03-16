@@ -6,6 +6,7 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+/**/
 
 * {
     margin: 0;
@@ -51,6 +52,11 @@ body {
 .heading-primary {
     color: #fff;
     text-transform: uppercase;
+
+    /* IN ANIMATION WHEN IT ENDS THE APPLIED DIV MOVES A LITTLE BIT TO TOP :
+    WE DONT KNOW WHY IT DOES */
+    /* FIX */
+    backface-visibility: hidden;
 }
 
 .heading-primary-main {
@@ -58,6 +64,14 @@ body {
     font-size: 60px;
     font-weight: 400;
     letter-spacing: 35px;
+
+    animation-name: moveInLeft; /* basic things to start animation*/
+    animation-duration: 1s; /* basic things to start animation */
+
+    animation-timing-function: ease-out; /* 'impt property' this specifies how fast/slow the animations should procced `@keyframes`*/
+    
+    /* animation-delay: 1s; delays before starting the animation */
+    /* animation-iteration-count: 3; it will animate the no of times specfied */
 }
 
 .heading-primary-sub {
@@ -65,4 +79,40 @@ body {
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 17.5px;
+
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    80%{
+        transform: translateX(10px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80%{
+        transform: translateX(-10px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
 }
